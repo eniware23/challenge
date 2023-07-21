@@ -1,0 +1,14 @@
+# Copy this to your my.cnf file. Please change <directory> to the corresponding 
+# directory where the files were copied.
+[client]
+ssl-ca=<directory>/ca-cert.pem
+ssl-cert=<directory>/client-cert.pem
+ssl-key=<directory>/client-key.pem
+
+[mysqld]
+#ssl-ca=<directory>/ca-cert.pem
+/Users/enigua/Library/Application Support/MySQL/Workbench/certificates/1F284704-C5BF-40F0-8985-4942E276A2D7/ca-cert.pem
+#ssl-cert=<directory>/server-cert.pem
+/Users/enigua/Library/Application Support/MySQL/Workbench/certificates/1F284704-C5BF-40F0-8985-4942E276A2D7/server-cert.pem
+#ssl-key=<directory>/server-key.pem
+/Users/enigua/Library/Application Support/MySQL/Workbench/certificates/1F284704-C5BF-40F0-8985-4942E276A2D7/server-key.pem
