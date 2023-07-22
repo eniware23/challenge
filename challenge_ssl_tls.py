@@ -24,7 +24,7 @@ conn = mysql.connector.connect(
     host="localhost",
     user="root",
     password="M3RC4D0..P4G0",
-    database="Challenge_TLS_mercado_pago"
+    database="Challenge_mercado_pago"
     #port="3306"
 )
 #Creación de un cursor para la interación con la base de datos con el metodo cursor()
@@ -36,27 +36,33 @@ cursor = conn.cursor()
 y se usa un AUTO_INCREMENT para incrementar el identificador por cada tabla creada.'''
 #sql = '''ALTER TABLE usuarios ADD COLUMN apellidos VARCHAR(255)''' 
 #Sentencia SQL CREATE TABLE
-cursor.execute('''CREATE TABLE usuarios
-                  (id INT AUTO_INCREMENT PRIMARY KEY,
-                   fec_alta DATETIME,
-                   user_name VARCHAR(255),
-                   codigo_zip VARCHAR(255),
-                   credit_card_num VARCHAR(255), 
-                   credit_card_ccv INT,
-                   cuenta_numero VARCHAR(255),           
-                   direccion VARCHAR(255),
-                   geo_latitud SMALLINT,
-                   geo_longitud SMALLINT,
-                   color_favorito VARCHAR(255),
-                   foto_dni VARCHAR(255),
-                   ip VARCHAR(15),
-                   auto VARCHAR(255),
-                   auto_modelo VARCHAR(255),
-                   auto_tipo VARCHAR(255),
-                   auto_color VARCHAR(255),
-                   cantidad_compras_realizadas INT,
-                   avatar VARCHAR(255),
-                   fec_birthday DATETIME)''')
+cursor.execute('''CREATE TABLE IF NOT EXISTS usuarios (
+               id INT AUTO_INCREMENT PRIMARY KEY,
+               fec_alta DATETIME,
+               user_name VARCHAR(255),
+               codigo_zip VARCHAR(255),
+               credit_card_num VARBINARY(255),
+               credit_card_ccv INT,
+               cuenta_numero VARBINARY(255),
+               direccion VARBINARY(255),
+               geo_latitud SMALLINT,
+               geo_longitud SMALLINT,
+               color_favorito VARCHAR(255),
+               foto_dni VARBINARY(255),
+               ip VARBINARY(15),
+               auto VARCHAR(255),
+               auto_modelo VARCHAR(255),
+               auto_tipo VARCHAR(255),
+               auto_color VARCHAR(255),
+               cantidad_compras_realizadas INT,
+               avatar VARCHAR(255),
+               fec_birthday DATETIME
+               ) ENGINE=InnoDB
+               ROW_FORMAT=COMPRESSED
+               KEY_BLOCK_SIZE=8
+               ENCRYPTED=YES
+               ENCRYPTION_KEY_ID=1;
+            ''')
 
 # Mediante las siguientes lineas de realiza la ingesta de los datos en las tablas con el "ciclo For"
 for item in data:
@@ -94,7 +100,7 @@ for item in data:
 
     cursor.execute("INSERT INTO usuarios (fec_alta, user_name, codigo_zip, credit_card_num, credit_card_ccv, cuenta_numero, direccion, geo_latitud, geo_longitud, color_favorito, foto_dni, ip, auto, auto_modelo, auto_tipo, auto_color, cantidad_compras_realizadas, avatar, fec_birthday) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s)", (fec_alta, user_name, codigo_zip, credit_card_num, credit_card_ccv, cuenta_numero, direccion, geo_latitud, geo_longitud, color_favorito, foto_dni, ip, auto, auto_modelo, auto_tipo, auto_color, cantidad_compras_realizadas, avatar, fec_birthday))
 
-print(cursor.rowcount "registros insertados")
+#print(cursor.rowcount "registros insertados")
 # Confirmar los cambios y cerrar la conexión
 conn.commit()
 conn.close()
