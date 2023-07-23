@@ -1,0 +1,1 @@
+SELECT * FROM Challenge_mercado_pago.usuarios;
