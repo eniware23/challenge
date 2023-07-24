@@ -5,12 +5,18 @@ Created on Tue Jul 24 06:41:25 2023
 
 @author: enigua
 """
-from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives import hashes
+import base64
 import os
 
-def generar_clave(secret_key, salt):
+'''La clave secreta para encriptar los valores de las tablas a cifrar 
+    (en un entorno real esta clave debe ser custodiada y almacencada en otro lugar de forma segura)
+    Genera una sal (puedes utilizar un valor aleatorio único para cada registro)'''
+CLAVE_SECRETA = "cl4ve_secreta_123"
+
+def generar_clave(salt):
     kdf = PBKDF2HMAC(
         algorithm=hashes.SHA256(),
         iterations=100000,
@@ -18,10 +24,5 @@ def generar_clave(secret_key, salt):
         length=32,
         backend=default_backend()
     )
-    clave = kdf.derive(secret_key.encode())
+    clave = kdf.derive(CLAVE_SECRETA.encode())
     return clave
-
-def clave_encriptacion():
-    clave_secreta = "cl4ve_secreta_123"
-    salt = os.urandom(16)
-    clave_encriptacion = generar_clave(clave_secreta, salt)

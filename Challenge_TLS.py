@@ -14,7 +14,7 @@ from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 import base64
 import os
 #función importada desde encriptacion.py para obtener la clave encriptada:
-from encriptacion import generar_clave, clave_encriptacion 
+from encriptacion import generar_clave 
 
 #función para encriptar los datos a almacenar en MySQL
 def encriptar(datos, clave):
@@ -79,10 +79,7 @@ cursor.execute('''CREATE TABLE usuarios
 
 # Mediante las siguientes lineas de realiza la ingesta de los datos en las tablas con el "ciclo For"
 for item in data:
-    
-    
-
-#Creación de las tablas en la DB MySQL        
+    salt = os.urandom(16)    
     id = item.get('id')
     #Desafio 1: convertir la fecha al formato correcto (AAAA-MM-DD HH:MM:SS)
     #fec_alta = datetime.datetime.strptime(item.get('fec_alta'), '%d/%m/%Y').strftime('%Y-%m-%d %H:%M:%S')
@@ -93,20 +90,20 @@ for item in data:
     #Desafio 2: el valor a ingresar supera el rango permitido para esta columna.
     credit_card_num = item.get('credit_card_num')
     # Encripta el valor credit_card_ccv
-    credit_card_ccv_encriptado = encriptar(item.get('credit_card_ccv'), clave_encriptacion)
-    cuenta_numero_encriptado = encriptar(item.get('cuenta_numero'), clave_encriptacion)
+    credit_card_ccv_encriptado = encriptar(item.get('credit_card_ccv'), generar_clave(salt))
+    cuenta_numero_encriptado = encriptar(item.get('cuenta_numero'), generar_clave(salt))
     direccion = item.get('direccion')
     geo_latitud = item.get('geo_latitud')
     geo_longitud = item.get('geo_longitud')
-    color_favorito_encriptado = encriptar(item.get('color_favorito'), clave_encriptacion)
+    color_favorito_encriptado = encriptar(item.get('color_favorito'), generar_clave(salt))
     foto_dni = item.get('foto_dni')
-    ip_encriptado = encriptar(item.get('ip'), clave_encriptacion)
+    ip_encriptado = encriptar(item.get('ip'), generar_clave(salt))
     #ip = item.get('ip')
     auto = item.get('auto')
     auto_modelo = item.get('auto_modelo')
     auto_tipo = item.get('auto_tipo')
     auto_color = item.get('auto_color')
-    cantidad_compras_realizadas_encriptado = encriptar(str(item.get('cantidad_compras_realizadas')), clave_encriptacion)
+    cantidad_compras_realizadas_encriptado = encriptar(str(item.get('cantidad_compras_realizadas')), generar_clave(salt))
     avatar = item.get('avatar')
     #fec_birthday = item.get('fec_birthday')
     #Desafio 3 es parecido al desafio 1, pero esta vés el formato es de otro tipo...
