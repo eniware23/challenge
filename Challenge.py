@@ -23,8 +23,8 @@ else:
 conn = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="M3RC4D0..P4G0",
-    database="Challenge_mercado_pago"
+    password="Pru3B4..123",
+    database="Prueba_123"
     #port="3306"
 )
 #Creación de un cursor para la interación con la base de datos con el metodo cursor()

@@ -12,10 +12,10 @@ import os
 #función importada desde encriptacion.py para obtener la clave encriptada:
 from desencriptar import desencriptar
 from encriptacion import generar_clave
-conexion = mysql.connector.connect(user='root', password='M3RC4D0..P4G0',
+conexion = mysql.connector.connect(user='root', password='Pru3B4..123',
                                host='localhost',
                                #host='127.0.0.1',
-                               database='Challenge_mercado_pago',
+                               database="Prueba_123"
                                port='3306',
                                )                                                   
 # Creación de un cursor para la interacción con la base de datos con el método cursor()
