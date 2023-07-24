@@ -13,11 +13,11 @@ import os
 from desencriptar import desencriptar
 from encriptacion import generar_clave
 conexion = mysql.connector.connect(user='root', password='Pru3B4..123',
-                               host='localhost',
-                               #host='127.0.0.1',
-                               database="Prueba_123"
-                               port='3306',
-                               )                                                   
+                                   host='localhost',
+                                   #host='127.0.0.1',
+                                   database="Prueba_123",
+                                   port='3306',
+                                   )                                                   
 # Creación de un cursor para la interacción con la base de datos con el método cursor()
 id_usuario = 33
 cursor = conexion.cursor()
