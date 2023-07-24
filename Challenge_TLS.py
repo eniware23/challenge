@@ -13,20 +13,8 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 import base64
 import os
-
-
-#función para generar la clave de encriptación:
-def generar_clave(secret_key, salt):
-    kdf = PBKDF2HMAC(
-        algorithm=hashes.SHA256(),
-        iterations=100000,
-        salt=salt,
-        length=32,
-        backend=default_backend()
-    )
-    clave = kdf.derive(secret_key.encode())
-    return clave
-
+#función importada desde encriptacion.py para obtener la clave encriptada:
+from encriptacion import generar_clave, clave_encriptacion 
 
 #función para encriptar los datos a almacenar en MySQL
 def encriptar(datos, clave):
@@ -92,14 +80,9 @@ cursor.execute('''CREATE TABLE usuarios
 # Mediante las siguientes lineas de realiza la ingesta de los datos en las tablas con el "ciclo For"
 for item in data:
     
-    '''La clave secreta para encriptar los valores de las tablas a cifrar 
-    (en un entorno real esta clave debe ser custodiada y almacencada en otro lugar de forma segura)'''
-    clave_secreta = "cl4ve_secreta_123"
-    # Genera una sal (puedes utilizar un valor aleatorio único para cada registro)
-    salt = os.urandom(16)
-    # Genera la clave de encriptación
-    clave_encriptacion = generar_clave(clave_secreta, salt)
-        
+    
+
+#Creación de las tablas en la DB MySQL        
     id = item.get('id')
     #Desafio 1: convertir la fecha al formato correcto (AAAA-MM-DD HH:MM:SS)
     #fec_alta = datetime.datetime.strptime(item.get('fec_alta'), '%d/%m/%Y').strftime('%Y-%m-%d %H:%M:%S')

@@ -14,9 +14,9 @@ conexion = mysql.connector.connect(user='root', password='M3RC4D0..P4G0',
                                #host='127.0.0.1',
                                database='Challenge_mercado_pago',
                                port='3306',
-                               ssl_ca='/Users/enigua/Library/Application Support/MySQL/Workbench/certificates/1F284704-C5BF-40F0-8985-4942E276A2D7/ca-cert.pem',
-                               ssl_cert='/Users/enigua/Library/Application Support/MySQL/Workbench/certificates/1F284704-C5BF-40F0-8985-4942E276A2D7/client-cert.pem',
-                               ssl_key='/Users/enigua/Library/Application Support/MySQL/Workbench/certificates/1F284704-C5BF-40F0-8985-4942E276A2D7/client-key.pem' 
+                               #ssl_ca='/Users/enigua/Library/Application Support/MySQL/Workbench/certificates/1F284704-C5BF-40F0-8985-4942E276A2D7/ca-cert.pem',
+                               #ssl_cert='/Users/enigua/Library/Application Support/MySQL/Workbench/certificates/1F284704-C5BF-40F0-8985-4942E276A2D7/client-cert.pem',
+                               #ssl_key='/Users/enigua/Library/Application Support/MySQL/Workbench/certificates/1F284704-C5BF-40F0-8985-4942E276A2D7/client-key.pem' 
                                )                                                   
                                
 #print(conexion)
