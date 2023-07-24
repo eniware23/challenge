@@ -14,7 +14,7 @@ from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 import base64
 import os
 #función importada desde encriptacion.py para obtener la clave encriptada:
-from encriptacion import generar_clave 
+from en_cryp import generar_clave 
 
 #función para encriptar los datos a almacenar en MySQL
 def encriptar(datos, clave):
