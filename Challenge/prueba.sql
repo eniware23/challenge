@@ -1,1 +1,0 @@
-create database Challenge_mercado_pago;
