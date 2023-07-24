@@ -10,8 +10,8 @@ import mysql.connector, pandas as pd
 from mysql.connector import connect
 import os
 #función importada desde encriptacion.py para obtener la clave encriptada:
-from desencriptar import desencriptar
-from encriptacion import generar_clave
+from desen_cryp import desencriptar
+from en_cryp import generar_clave
 conexion = mysql.connector.connect(user='root', password='Pru3B4..123',
                                    host='localhost',
                                    #host='127.0.0.1',
