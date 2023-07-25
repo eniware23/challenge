@@ -12,7 +12,7 @@ import base64
 import os
 
 '''La clave secreta para encriptar los valores de las tablas a cifrar 
-    (en un entorno real esta clave debe ser custodiada y almacencada en otro lugar de forma segura)
+    (en un entorno real esta clave debe ser custodiada y almacenada en otro lugar de forma segura)
     Genera una sal (puedes utilizar un valor aleatorio único para cada registro)'''
 CLAVE_SECRETA = "cl4ve_secreta_123"
 

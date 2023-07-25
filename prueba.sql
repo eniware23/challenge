@@ -1,1 +1,1 @@
-create database Challenge_mercado_pago;
+create database Prueba_123;

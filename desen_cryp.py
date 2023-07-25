@@ -11,7 +11,7 @@ from cryptography.hazmat.primitives import padding
 import base64
 
 '''La clave secreta para encriptar los valores de las tablas a cifrar 
-    (en un entorno real esta clave debe ser custodiada y almacencada en otro lugar de forma segura)
+    (en un entorno real esta clave debe ser custodiada y almacenada en otro lugar de forma segura)
     Genera una sal (puedes utilizar un valor aleatorio único para cada registro)'''
 
 def desencriptar(datos_encriptados, clave):

@@ -1,1 +1,1 @@
-SELECT * FROM Challenge_mercado_pago.usuarios;
+SELECT * FROM Prueba_123.usuarios;
