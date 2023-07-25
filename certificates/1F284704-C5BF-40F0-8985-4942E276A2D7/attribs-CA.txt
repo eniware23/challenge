@@ -2,10 +2,10 @@
 distinguished_name=distinguished_name
 prompt=no
 [distinguished_name]
-C=b'colombia'
-ST=b'antioquia'
-L=b'medellin'
-O=b'mercadolibre'
-OU=b'mercadopago'
-CN=b'localhost.mercadopago.com.co'
-emailAddress=b'mercadopago@mercadolivre.com.co'
+C=US
+ST=California
+L=Redwood Shores
+O=Oracle
+OU=MySQL
+CN=issuer
+emailAddress=any@localhost
