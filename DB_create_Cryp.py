@@ -7,25 +7,10 @@ Created on Tue Jul 18 21:55:15 2023
 """
 #Importar las librerias que se requieren, "requests" para la conexión tipo GET (solicitud) a la API y mysql.connector para la comunicación con la DB
 import requests, datetime, mysql.connector
-from cryptography.hazmat.primitives import hashes, padding
-from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
-from cryptography.hazmat.backends import default_backend
-from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
-import base64
 import os
 #función importada desde encriptacion.py para obtener la clave encriptada:
-from en_cryp import generar_clave 
-
-#función para encriptar los datos a almacenar en MySQL
-def encriptar(datos, clave):
-    init_v = os.urandom(16)  # Initialization vector de 16 bytes
-    padder = padding.PKCS7(128).padder()
-    datos_padded = padder.update(datos.encode()) + padder.finalize()
-    cipher = Cipher(algorithms.AES(clave), modes.CFB(init_v), backend=default_backend())
-    encriptador = cipher.encryptor()
-    datos_encriptados = encriptador.update(datos_padded) + encriptador.finalize()
-    return base64.b64encode(init_v + datos_encriptados).decode()
-
+from clave import generar_clave
+from encry import encriptar
 
 # Para extraer los datos desde la Appweb Mockapi (API)
 url = 'https://62433a7fd126926d0c5d296b.mockapi.io/api/v1/usuarios'
@@ -35,7 +20,6 @@ if response.status_code == 200:
 else:
     print(f"Error en la solicitud: {response.status_code}")
     exit()
-
 
 # 'conn' Conexión con la base de datos MySQL y los datos necesarios ya existentes en MySQL
 conn = mysql.connector.connect(
@@ -54,6 +38,7 @@ cursor = conn.cursor()
 y se usa un AUTO_INCREMENT para incrementar el identificador por cada tabla creada.'''
 #sql = '''ALTER TABLE usuarios ADD COLUMN apellidos VARCHAR(255)''' 
 #Sentencia SQL CREATE TABLE
+#cursor.execute("CREATE DATABASE Prueba_123")
 cursor.execute('''CREATE TABLE usuarios
                   (id INT AUTO_INCREMENT PRIMARY KEY,
                    fec_alta DATETIME,

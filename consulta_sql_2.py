@@ -6,12 +6,12 @@ Created on Tue Jul 18 20:41:43 2023
 @author: enigua
 """
 
-import mysql.connector, pandas as pd
+import mysql.connector
 from mysql.connector import connect
 import os
 #función importada desde encriptacion.py para obtener la clave encriptada:
-from desen_cryp import desencriptar
-from en_cryp import generar_clave
+from encryp_desencryp import desencriptar
+from clave import generar_clave
 conexion = mysql.connector.connect(user='root', password='Pru3B4..123',
                                    host='localhost',
                                    #host='127.0.0.1',
@@ -25,7 +25,7 @@ cursor.execute("SELECT credit_card_ccv FROM usuarios WHERE id = %s", (id_usuario
 #cursor.execute('''SELECT user_name, credit_card_ccv FROM usuarios''')
 resultado = cursor.fetchone()
 
-CLAVE_SECRETA = b"cl4ve_secreta_123"
+CLAVE_SECRETA = "cl4ve_secreta_123"
 salt = os.urandom(16)
 
 clave_encriptacion = generar_clave(salt)

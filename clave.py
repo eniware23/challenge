@@ -8,8 +8,6 @@ Created on Tue Jul 24 06:41:25 2023
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes
-import base64
-import os
 
 '''La clave secreta para encriptar los valores de las tablas a cifrar 
     (en un entorno real esta clave debe ser custodiada y almacenada en otro lugar de forma segura)
